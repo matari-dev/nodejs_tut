@@ -1,31 +1,40 @@
-const readline = require('readline');
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-let num1 = Math.floor((Math.random() * 10) + 1);
-let num2 = Math.floor((Math.random() * 10) + 1);
-let answer = num1 + num2;
+const fs = require('fs');
 
-rl.question(`what is ${num1} + ${num2}?\n`,
-	(userInput) => {
-		if (userInput.trim() == answer) {
-			rl.close();
-		}
-		else {
-			rl.setPrompt('no donut, please try again\n');
-			rl.prompt();
-			rl.on('line', (userInput) => {
-				if (userInput.trim() == answer)
-					rl.close();
-				else{
-					rl.setPrompt(`your answer of ${userInput} is incorrect try again \n`);
-					rl.prompt();
-				}
-			})
-		}
-	});
+// create a file
+// fs.writeFile('ex01.txt',"this is an example bro", (err)=>{
+// 	if(err)
+// 		console.log(err);
+// 	else {
+// 		console.log('File successfully created bro');
+// 		fs.readFile('ex01.txt', 'utf8', (err, file)=>{
+// 			if(err)
+// 				console.log(err);
+// 			else
+// 				console.log(file);
+// 		})
+// 	}
+// });
 
-rl.on('close', () => {
-	console.log('correctamundo!');
+// rename a file
+// fs.rename('ex01.txt','ex02.txt', (err)=>{
+// 	if(err)
+// 		console.log(err);
+// 	else
+// 		console.log('file rename suck-seeded.');
+// });
+
+// append text to file
+// fs.appendFile('ex02.txt', 'Some data being appended bro', (err) => {
+// 	if(err)
+// 		console.log(err);
+// 	else
+// 		console.log('successfully appended data to file bro');
+// });
+
+// delete file
+fs.unlink('ex02.txt', (err) => {
+	if (err)
+		console.log(err);
+	else
+		console.log('successfully deleted the file');
 });
