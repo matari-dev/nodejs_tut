@@ -1,40 +1,57 @@
 const fs = require('fs');
 
-// create a file
-// fs.writeFile('ex01.txt',"this is an example bro", (err)=>{
-// 	if(err)
+// make a directory & text file inside it
+// add content to text file
+//
+// fs.mkdir('tutorial', (err) => {
+// 	if (err)
 // 		console.log(err);
 // 	else {
-// 		console.log('File successfully created bro');
-// 		fs.readFile('ex01.txt', 'utf8', (err, file)=>{
+// 		fs.writeFile('./tutorial/ex01.txt','i\'m inside the file bro!', (err)=>{
 // 			if(err)
 // 				console.log(err);
-// 			else
-// 				console.log(file);
-// 		})
+// 			else {
+// 				console.log('the file was made bro!');
+// 			}
+// 		});
 // 	}
 // });
 
-// rename a file
-// fs.rename('ex01.txt','ex02.txt', (err)=>{
+// file inside folder must be deleted before
+// you can delete the folder. example below.
+//
+// fs.unlink('./tutorial/ex01.txt',(err)=>{
 // 	if(err)
 // 		console.log(err);
-// 	else
-// 		console.log('file rename suck-seeded.');
+// 	else {
+// 		console.log('deleted file bro');
+// 		fs.rmdir('tutorial',(err)=>{
+// 			if(err)
+// 				console.log(err);
+// 			else {
+// 				console.log('deleted folder bro');
+// 			}
+// 		});
+// 	}
 // });
 
-// append text to file
-// fs.appendFile('ex02.txt', 'Some data being appended bro', (err) => {
-// 	if(err)
-// 		console.log(err);
-// 	else
-// 		console.log('successfully appended data to file bro');
-// });
-
-// delete file
-fs.unlink('ex02.txt', (err) => {
-	if (err)
+// this time, multiple files in folder
+// same as before: folder must be emptied before 
+// folder can be removed
+// code below demonstrates how to 
+// remove multiple files first.
+fs.readdir('example', (err, files) => {
+	if(err)
 		console.log(err);
-	else
-		console.log('successfully deleted the file');
+	else{
+		for (let file of files){
+			fs.unlink('./example/' + file, (err)=>{
+				if(err)
+					console.log(err);
+				else {
+					console.log('file successfully baleted bro');
+				}
+			});
+		}
+	}
 });
